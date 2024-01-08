@@ -37,10 +37,9 @@ def download_arxiv_paper(arxiv_id: str, download_dir: str = "/mnt/mydisk/downloa
 @app.post("/download-arxiv/")
 async def download_arxiv_endpoint(paper: ArxivPaperID):
     paper_id = paper.paper_id
-    file_path = f"downloads/{paper_id}.pdf"
+    file_path = f"/mnt/mydisk/downloads/{paper_id}.pdf"  # Adjusted to use persistent storage
 
-    # Check if the file exists, if not, try to download it
     if not os.path.isfile(file_path):
-        file_path = download_arxiv_paper(paper_id)
+        file_path = download_arxiv_paper(paper_id, download_dir="/mnt/mydisk/downloads")
 
     return FileResponse(file_path, media_type='application/pdf', filename=f"{paper_id}.pdf")
