@@ -1,11 +1,11 @@
 import requests
 
 # Replace with your FastAPI server URL and port
-url = 'http://127.0.0.1:8000/download-arxiv/'
+url = 'https://arxiver.onrender.com/download-arxiv/'
 
 # Replace with the desired arXiv paper ID
 data = {
-    "paper_id": "1605.08386v1"  # Example: "1605.08386v1"
+    "paper_id": "1606.01540"  # Example: "1605.08386v1"
 }
 
 # Send POST request
