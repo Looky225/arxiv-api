@@ -16,7 +16,7 @@ class ArxivPaperID(BaseModel):
 async def read_root():
     return {"message": "Welcome to the arXiv paper downloading API. Use POST to submit paper IDs."}
 
-def download_arxiv_paper(arxiv_id: str, download_dir: str = "./downloads") -> str:
+def download_arxiv_paper(arxiv_id: str, download_dir: str = "/mnt/mydisk/downloads") -> str:
     if not os.path.exists(download_dir):
         os.makedirs(download_dir)
 
