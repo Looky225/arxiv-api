@@ -23,9 +23,9 @@ def pdf_to_text(pdf_path):
     with open(pdf_path, 'rb') as file:
         reader = PyPDF2.PdfReader(file)
         text = []
-        for page in range(reader.pages):
-            text.append(reader.getPage(page).extractText())
-        return chr(12).join(text)
+        for page in reader.pages:
+            text.append(page.extract_text())
+        return "\f".join(text)
 
 def write_text_to_file(text, file_path):
     pathlib.Path(file_path).write_bytes(text.encode())
