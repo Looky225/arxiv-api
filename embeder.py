@@ -21,7 +21,7 @@ def download_arxiv_paper(arxiv_id):
 
 def pdf_to_text(pdf_path):
     with open(pdf_path, 'rb') as file:
-        reader = PyPDF2.PdfFileReader(file)
+        reader = PyPDF2.PdfReader(file)
         text = []
         for page in range(reader.numPages):
             text.append(reader.getPage(page).extractText())
