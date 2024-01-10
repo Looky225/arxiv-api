@@ -9,6 +9,7 @@ import os
 from fastapi import FastAPI, UploadFile, File, Response, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
+import PyPDF2
 
 
 def download_arxiv_paper(arxiv_id):
@@ -19,9 +20,12 @@ def download_arxiv_paper(arxiv_id):
     return file_path
 
 def pdf_to_text(pdf_path):
-    with fitz.open(pdf_path) as doc:
-        text = chr(12).join([page.get_text() for page in doc])
-    return text
+    with open(pdf_path, 'rb') as file:
+        reader = PyPDF2.PdfFileReader(file)
+        text = []
+        for page in range(reader.numPages):
+            text.append(reader.getPage(page).extractText())
+        return chr(12).join(text)
 
 def write_text_to_file(text, file_path):
     pathlib.Path(file_path).write_bytes(text.encode())

@@ -3,3 +3,4 @@ req.py
 req2.py
 *.pdf
 *.txt
+!requirements.txt
