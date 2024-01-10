@@ -23,7 +23,7 @@ def pdf_to_text(pdf_path):
     with open(pdf_path, 'rb') as file:
         reader = PyPDF2.PdfReader(file)
         text = []
-        for page in range(reader.numPages):
+        for page in range(reader.pages):
             text.append(reader.getPage(page).extractText())
         return chr(12).join(text)
 
